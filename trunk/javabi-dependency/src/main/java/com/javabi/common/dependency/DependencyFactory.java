@@ -20,11 +20,16 @@ public class DependencyFactory {
 		return globalFactory;
 	}
 
+	public static IDependencyFactory getLocalInstance() {
+		return localFactories.get();
+	}
+
 	public static IDependencyFactory getGlobalInstance() {
 		return globalFactory;
 	}
 
 	public static void setGlobalInstance(IDependencyFactory factory) {
+		// There must always be a global instance!
 		if (factory == null) {
 			throw new NullPointerException();
 		}
@@ -32,6 +37,7 @@ public class DependencyFactory {
 	}
 
 	public static void setLocalInstance(IDependencyFactory factory) {
+		// Set to null to remove the local instance if required
 		localFactories.set(factory);
 	}
 
